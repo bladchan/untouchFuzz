@@ -19,7 +19,11 @@ cd llvm_mode
 make
 cd ../llvm_mode_orig
 make
+```
 
+## How to Use
+
+```bash
 # Example for build xpdf 4.04
 cd ..
 wget https://dl.xpdfreader.com/xpdf-4.04.tar.gz

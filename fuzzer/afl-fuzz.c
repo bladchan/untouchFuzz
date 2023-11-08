@@ -7178,8 +7178,9 @@ havoc_stage:
 
     stage_name  = "havoc";
     stage_short = "havoc";
-    stage_max   = (doing_det ? HAVOC_CYCLES_INIT : HAVOC_CYCLES) *
-        perf_score * (1 + (queue_cur->favored_type == 1) ? 0.3 * queue_cur->dist : 0) / havoc_div / 100;
+    double energy = 30 * queue_cur->dist;
+    stage_max = (doing_det ? HAVOC_CYCLES_INIT : HAVOC_CYCLES) *
+        perf_score * (100 + ((queue_cur->favored_type == 1) ? (int)energy : 0)) / havoc_div / 100 / 100;
 
   } else {
 
@@ -7190,7 +7191,7 @@ havoc_stage:
     sprintf(tmp, "splice %u", splice_cycle);
     stage_name  = tmp;
     stage_short = "splice";
-    stage_max   = SPLICE_HAVOC * perf_score * (1 + (queue_cur->favored_type == 1) ? 0.2 * queue_cur->dist : 0) / havoc_div / 100;
+    stage_max = SPLICE_HAVOC * perf_score / havoc_div / 100;
 
   }
 
